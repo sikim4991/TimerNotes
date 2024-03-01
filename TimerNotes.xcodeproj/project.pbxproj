@@ -1,0 +1,658 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF3937DE2B59287000C7BB7E /* TimerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3937DD2B59287000C7BB7E /* TimerDataStore.swift */; };
+		FF4231EC2B3D6669001E1785 /* TimerNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4231EB2B3D6669001E1785 /* TimerNotesApp.swift */; };
+		FF4231EE2B3D6669001E1785 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4231ED2B3D6669001E1785 /* ContentView.swift */; };
+		FF4231F02B3D666A001E1785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4231EF2B3D666A001E1785 /* Assets.xcassets */; };
+		FF4231F32B3D666A001E1785 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4231F22B3D666A001E1785 /* Preview Assets.xcassets */; };
+		FF4231F52B3D666A001E1785 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4231F42B3D666A001E1785 /* PersistenceController.swift */; };
+		FF4231F82B3D666A001E1785 /* TimerNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF4231F62B3D666A001E1785 /* TimerNotes.xcdatamodeld */; };
+		FF7CA6242B72257500B2CCB6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBE81EA2B56B26F00012889 /* SettingView.swift */; };
+		FF7CA62A2B7226B000B2CCB6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7CA5B12B71CE7600B2CCB6 /* WidgetKit.framework */; };
+		FF7CA62B2B7226B000B2CCB6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF7CA5B32B71CE7600B2CCB6 /* SwiftUI.framework */; };
+		FF7CA62E2B7226B000B2CCB6 /* TimerNotesWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CA62D2B7226B000B2CCB6 /* TimerNotesWidgetBundle.swift */; };
+		FF7CA6302B7226B000B2CCB6 /* TimerNotesWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CA62F2B7226B000B2CCB6 /* TimerNotesWidgetLiveActivity.swift */; };
+		FF7CA6322B7226B000B2CCB6 /* TimerNotesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CA6312B7226B000B2CCB6 /* TimerNotesWidget.swift */; };
+		FF7CA6342B7226B000B2CCB6 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CA6332B7226B000B2CCB6 /* AppIntent.swift */; };
+		FF7CA6362B7226B100B2CCB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7CA6352B7226B100B2CCB6 /* Assets.xcassets */; };
+		FF7CA63A2B7226B100B2CCB6 /* TimerNotesWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FF7CA6292B7226B000B2CCB6 /* TimerNotesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FF7CA63E2B72278D00B2CCB6 /* TimerNotesWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CA62F2B7226B000B2CCB6 /* TimerNotesWidgetLiveActivity.swift */; };
+		FF7CA65E2B742C8500B2CCB6 /* notificationSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FF7CA65D2B742C8500B2CCB6 /* notificationSound.wav */; };
+		FF7CA65F2B742C8500B2CCB6 /* notificationSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FF7CA65D2B742C8500B2CCB6 /* notificationSound.wav */; };
+		FF8183882B6794E8004FE3A8 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8183872B6794E8004FE3A8 /* ListView.swift */; };
+		FF91FDE02B5E867200F7217A /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF91FDDF2B5E867200F7217A /* ChartView.swift */; };
+		FF9B4BD62B57D3E900FCBDD9 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B4BD52B57D3E900FCBDD9 /* TimerData.swift */; };
+		FFB3EDAC2B838DD90081A648 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7CA6352B7226B100B2CCB6 /* Assets.xcassets */; };
+		FFF8FCB72B44825500184AAF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF8FCB62B44825500184AAF /* TimerView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF7CA6382B7226B100B2CCB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF4231E02B3D6669001E1785 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF7CA6282B7226B000B2CCB6;
+			remoteInfo = TimerNotesWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FF7CA5C72B71CE7800B2CCB6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FF7CA63A2B7226B100B2CCB6 /* TimerNotesWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FF3937DD2B59287000C7BB7E /* TimerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDataStore.swift; sourceTree = "<group>"; };
+		FF4231E82B3D6669001E1785 /* TimerNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimerNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4231EB2B3D6669001E1785 /* TimerNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNotesApp.swift; sourceTree = "<group>"; };
+		FF4231ED2B3D6669001E1785 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF4231EF2B3D666A001E1785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF4231F22B3D666A001E1785 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FF4231F42B3D666A001E1785 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		FF4231F72B3D666A001E1785 /* TimerNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TimerNotes.xcdatamodel; sourceTree = "<group>"; };
+		FF7CA5B12B71CE7600B2CCB6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		FF7CA5B32B71CE7600B2CCB6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		FF7CA6292B7226B000B2CCB6 /* TimerNotesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimerNotesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF7CA62D2B7226B000B2CCB6 /* TimerNotesWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNotesWidgetBundle.swift; sourceTree = "<group>"; };
+		FF7CA62F2B7226B000B2CCB6 /* TimerNotesWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNotesWidgetLiveActivity.swift; sourceTree = "<group>"; tabWidth = 4; };
+		FF7CA6312B7226B000B2CCB6 /* TimerNotesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNotesWidget.swift; sourceTree = "<group>"; };
+		FF7CA6332B7226B000B2CCB6 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		FF7CA6352B7226B100B2CCB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF7CA6372B7226B100B2CCB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF7CA65D2B742C8500B2CCB6 /* notificationSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notificationSound.wav; sourceTree = "<group>"; };
+		FF8183872B6794E8004FE3A8 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		FF91FDDD2B5C2DA300F7217A /* TimerNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimerNotes.entitlements; sourceTree = "<group>"; };
+		FF91FDDE2B5C2DB800F7217A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FF91FDDF2B5E867200F7217A /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		FF9B4BD52B57D3E900FCBDD9 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
+		FFBE81EA2B56B26F00012889 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		FFF8FCB62B44825500184AAF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF4231E52B3D6669001E1785 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7CA6262B7226B000B2CCB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7CA62B2B7226B000B2CCB6 /* SwiftUI.framework in Frameworks */,
+				FF7CA62A2B7226B000B2CCB6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF4231DF2B3D6669001E1785 = {
+			isa = PBXGroup;
+			children = (
+				FF4231EA2B3D6669001E1785 /* TimerNotes */,
+				FF7CA62C2B7226B000B2CCB6 /* TimerNotesWidget */,
+				FF7CA5B02B71CE7600B2CCB6 /* Frameworks */,
+				FF4231E92B3D6669001E1785 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF4231E92B3D6669001E1785 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF4231E82B3D6669001E1785 /* TimerNotes.app */,
+				FF7CA6292B7226B000B2CCB6 /* TimerNotesWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF4231EA2B3D6669001E1785 /* TimerNotes */ = {
+			isa = PBXGroup;
+			children = (
+				FF91FDDE2B5C2DB800F7217A /* Info.plist */,
+				FF91FDDD2B5C2DA300F7217A /* TimerNotes.entitlements */,
+				FF4231EB2B3D6669001E1785 /* TimerNotesApp.swift */,
+				FF9B4BD42B57C55800FCBDD9 /* Model */,
+				FF9B4BD32B57C54C00FCBDD9 /* Store */,
+				FF9B4BD22B57C37800FCBDD9 /* View */,
+				FF4231EF2B3D666A001E1785 /* Assets.xcassets */,
+				FF7CA65D2B742C8500B2CCB6 /* notificationSound.wav */,
+				FF4231F42B3D666A001E1785 /* PersistenceController.swift */,
+				FF4231F62B3D666A001E1785 /* TimerNotes.xcdatamodeld */,
+				FF4231F12B3D666A001E1785 /* Preview Content */,
+			);
+			path = TimerNotes;
+			sourceTree = "<group>";
+		};
+		FF4231F12B3D666A001E1785 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FF4231F22B3D666A001E1785 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FF7CA5B02B71CE7600B2CCB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF7CA5B12B71CE7600B2CCB6 /* WidgetKit.framework */,
+				FF7CA5B32B71CE7600B2CCB6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF7CA62C2B7226B000B2CCB6 /* TimerNotesWidget */ = {
+			isa = PBXGroup;
+			children = (
+				FF7CA62D2B7226B000B2CCB6 /* TimerNotesWidgetBundle.swift */,
+				FF7CA62F2B7226B000B2CCB6 /* TimerNotesWidgetLiveActivity.swift */,
+				FF7CA6312B7226B000B2CCB6 /* TimerNotesWidget.swift */,
+				FF7CA6332B7226B000B2CCB6 /* AppIntent.swift */,
+				FF7CA6352B7226B100B2CCB6 /* Assets.xcassets */,
+				FF7CA6372B7226B100B2CCB6 /* Info.plist */,
+			);
+			path = TimerNotesWidget;
+			sourceTree = "<group>";
+		};
+		FF9B4BD22B57C37800FCBDD9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF4231ED2B3D6669001E1785 /* ContentView.swift */,
+				FFF8FCB62B44825500184AAF /* TimerView.swift */,
+				FF91FDDF2B5E867200F7217A /* ChartView.swift */,
+				FF8183872B6794E8004FE3A8 /* ListView.swift */,
+				FFBE81EA2B56B26F00012889 /* SettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF9B4BD32B57C54C00FCBDD9 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				FF3937DD2B59287000C7BB7E /* TimerDataStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		FF9B4BD42B57C55800FCBDD9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF9B4BD52B57D3E900FCBDD9 /* TimerData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF4231E72B3D6669001E1785 /* TimerNotes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF4231FB2B3D666A001E1785 /* Build configuration list for PBXNativeTarget "TimerNotes" */;
+			buildPhases = (
+				FF4231E42B3D6669001E1785 /* Sources */,
+				FF4231E52B3D6669001E1785 /* Frameworks */,
+				FF4231E62B3D6669001E1785 /* Resources */,
+				FF7CA5C72B71CE7800B2CCB6 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF7CA6392B7226B100B2CCB6 /* PBXTargetDependency */,
+			);
+			name = TimerNotes;
+			productName = TimerNotes;
+			productReference = FF4231E82B3D6669001E1785 /* TimerNotes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF7CA6282B7226B000B2CCB6 /* TimerNotesWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF7CA63D2B7226B100B2CCB6 /* Build configuration list for PBXNativeTarget "TimerNotesWidgetExtension" */;
+			buildPhases = (
+				FF7CA6252B7226B000B2CCB6 /* Sources */,
+				FF7CA6262B7226B000B2CCB6 /* Frameworks */,
+				FF7CA6272B7226B000B2CCB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimerNotesWidgetExtension;
+			productName = TimerNotesWidgetExtension;
+			productReference = FF7CA6292B7226B000B2CCB6 /* TimerNotesWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF4231E02B3D6669001E1785 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					FF4231E72B3D6669001E1785 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					FF7CA6282B7226B000B2CCB6 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = FF4231E32B3D6669001E1785 /* Build configuration list for PBXProject "TimerNotes" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF4231DF2B3D6669001E1785;
+			productRefGroup = FF4231E92B3D6669001E1785 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF4231E72B3D6669001E1785 /* TimerNotes */,
+				FF7CA6282B7226B000B2CCB6 /* TimerNotesWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF4231E62B3D6669001E1785 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF4231F32B3D666A001E1785 /* Preview Assets.xcassets in Resources */,
+				FF4231F02B3D666A001E1785 /* Assets.xcassets in Resources */,
+				FFB3EDAC2B838DD90081A648 /* Assets.xcassets in Resources */,
+				FF7CA65E2B742C8500B2CCB6 /* notificationSound.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7CA6272B7226B000B2CCB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7CA6362B7226B100B2CCB6 /* Assets.xcassets in Resources */,
+				FF7CA65F2B742C8500B2CCB6 /* notificationSound.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF4231E42B3D6669001E1785 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFF8FCB72B44825500184AAF /* TimerView.swift in Sources */,
+				FF7CA6242B72257500B2CCB6 /* SettingView.swift in Sources */,
+				FF4231F52B3D666A001E1785 /* PersistenceController.swift in Sources */,
+				FF8183882B6794E8004FE3A8 /* ListView.swift in Sources */,
+				FF9B4BD62B57D3E900FCBDD9 /* TimerData.swift in Sources */,
+				FF91FDE02B5E867200F7217A /* ChartView.swift in Sources */,
+				FF4231F82B3D666A001E1785 /* TimerNotes.xcdatamodeld in Sources */,
+				FF4231EE2B3D6669001E1785 /* ContentView.swift in Sources */,
+				FF7CA63E2B72278D00B2CCB6 /* TimerNotesWidgetLiveActivity.swift in Sources */,
+				FF4231EC2B3D6669001E1785 /* TimerNotesApp.swift in Sources */,
+				FF3937DE2B59287000C7BB7E /* TimerDataStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF7CA6252B7226B000B2CCB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF7CA6302B7226B000B2CCB6 /* TimerNotesWidgetLiveActivity.swift in Sources */,
+				FF7CA6342B7226B000B2CCB6 /* AppIntent.swift in Sources */,
+				FF7CA62E2B7226B000B2CCB6 /* TimerNotesWidgetBundle.swift in Sources */,
+				FF7CA6322B7226B000B2CCB6 /* TimerNotesWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF7CA6392B7226B100B2CCB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF7CA6282B7226B000B2CCB6 /* TimerNotesWidgetExtension */;
+			targetProxy = FF7CA6382B7226B100B2CCB6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FF4231F92B3D666A001E1785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF4231FA2B3D666A001E1785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF4231FC2B3D666A001E1785 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = TimerNotes/TimerNotes.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_ASSET_PATHS = "\"TimerNotes/Preview Content\"";
+				DEVELOPMENT_TEAM = 5MSDRAJA97;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerNotes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "타이머 노트";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.macnpc.TimerNotes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FF4231FD2B3D666A001E1785 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = TimerNotes/TimerNotes.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_ASSET_PATHS = "\"TimerNotes/Preview Content\"";
+				DEVELOPMENT_TEAM = 5MSDRAJA97;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerNotes/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "타이머 노트";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.macnpc.TimerNotes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FF7CA63B2B7226B100B2CCB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_TEAM = 5MSDRAJA97;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerNotesWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimerNotesWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.macnpc.TimerNotes.TimerNotesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FF7CA63C2B7226B100B2CCB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEVELOPMENT_TEAM = 5MSDRAJA97;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerNotesWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimerNotesWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.macnpc.TimerNotes.TimerNotesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF4231E32B3D6669001E1785 /* Build configuration list for PBXProject "TimerNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4231F92B3D666A001E1785 /* Debug */,
+				FF4231FA2B3D666A001E1785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF4231FB2B3D666A001E1785 /* Build configuration list for PBXNativeTarget "TimerNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF4231FC2B3D666A001E1785 /* Debug */,
+				FF4231FD2B3D666A001E1785 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF7CA63D2B7226B100B2CCB6 /* Build configuration list for PBXNativeTarget "TimerNotesWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF7CA63B2B7226B100B2CCB6 /* Debug */,
+				FF7CA63C2B7226B100B2CCB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FF4231F62B3D666A001E1785 /* TimerNotes.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FF4231F72B3D666A001E1785 /* TimerNotes.xcdatamodel */,
+			);
+			currentVersion = FF4231F72B3D666A001E1785 /* TimerNotes.xcdatamodel */;
+			path = TimerNotes.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = FF4231E02B3D6669001E1785 /* Project object */;
+}
