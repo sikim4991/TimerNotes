@@ -12,12 +12,12 @@ struct ListView: View {
     @FetchRequest(
         entity: TimerCoreData.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \TimerCoreData.startDate, ascending: false)]
     ) var timerCoreDatas: FetchedResults<TimerCoreData>
-    @EnvironmentObject private var timerDataStore: TimerDataStore
+    @ObservedObject var listViewModel: ListViewModel
     
     var body: some View {
         //타이머 시작 날짜, 타이머 설정 시간 리스트
         List {
-            ForEach(timerDataStore.dateTitle ?? [], id: \.self) { date in
+            ForEach(listViewModel.dateTitle ?? [], id: \.self) { date in
                 Section {
                     ForEach(timerCoreDatas) { data in
                         if date == Calendar.current.startOfDay(for: data.startDate!) {
@@ -33,27 +33,8 @@ struct ListView: View {
                     //밀어서 혹은 Edit 버튼으로 삭제
                     .onDelete(perform: { (offsets: IndexSet) in
                         withAnimation {
-                            for deleteData in offsets.map({ timerCoreDatas[$0] }) {
-                                var containCount: Int = 0
-                                for temp in timerCoreDatas {
-                                    if Calendar.current.startOfDay(for: deleteData.startDate!) == Calendar.current.startOfDay(for: temp.startDate!) {
-                                        containCount += 1
-                                    }
-                                }
-                                
-                                if containCount == 1 {
-                                    timerDataStore.removeDateTitle(date: deleteData.startDate!)
-                                }
-                            }
-                            offsets.map { timerCoreDatas[$0] }.forEach(viewContext.delete)
-                            do {
-                                try viewContext.save()
-                            } catch {
-                                // Replace this implementation with code to handle the error appropriately.
-                                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                                let nsError = error as NSError
-                                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                            }
+                            listViewModel.removeDateTitle(offsets: offsets, timerCoreDatas: timerCoreDatas)
+                            PersistenceController.shared.removeItem(offsets: offsets, timerCoreDatas: timerCoreDatas)
                         }
                     })
                 } header: {
@@ -64,7 +45,7 @@ struct ListView: View {
         .onAppear {
             for data in timerCoreDatas {
                 //CoreData에 시작날짜 기준으로 Header 생성
-                timerDataStore.addDateTitle(date: data.startDate ?? Date())
+                listViewModel.addDateTitle(date: data.startDate ?? Date())
             }
         }
         .toolbar {
@@ -90,5 +71,5 @@ private let dateTitleFormatter: DateFormatter = {
 }()
 
 #Preview {
-    ListView()
+    ListView(listViewModel: ListViewModel())
 }
