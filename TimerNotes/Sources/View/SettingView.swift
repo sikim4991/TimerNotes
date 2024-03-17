@@ -9,13 +9,10 @@ import SwiftUI
 import StoreKit
 
 struct SettingView: View {
-    @EnvironmentObject private var timerDataStore: TimerDataStore
+    @ObservedObject var settingViewModel: SettingViewModel
     @Environment(\.requestReview) var requestReview
     @Environment(\.colorScheme) private var colorScheme
-    
-    let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-    let appStoreURLString = "https://apps.apple.com/app/id6478483182?action=write-review"
-    
+        
     var body: some View {
         List {
             Section(header: Text("설정"), footer:
@@ -23,9 +20,9 @@ struct SettingView: View {
                 Spacer()
                 Text("소리/진동은 측면 버튼으로 조절")
             }) {
-                Toggle("디스플레이 항상 켜놓기", isOn: $timerDataStore.isAlwaysOnDisplay)
+                Toggle("디스플레이 항상 켜놓기", isOn: $settingViewModel.isAlwaysOnDisplay)
                 Button("설정 바로가기") {
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    settingViewModel.openSetting()
                 }
                 .foregroundStyle(colorScheme == .dark ? Color.white : Color.black)
             }
@@ -37,17 +34,14 @@ struct SettingView: View {
                 .foregroundStyle(colorScheme == .dark ? Color.white : Color.black)
                 
                 Button("앱 리뷰 작성하기") {
-                    guard let url = URL(string: appStoreURLString) else {
-                        return
-                    }
-                    UIApplication.shared.open(url)
+                    settingViewModel.openReviewWriting()
                 }
                 .foregroundStyle(colorScheme == .dark ? Color.white : Color.black)
                 
                 HStack {
                     Text("현재 버전")
                     Spacer()
-                    Text(currentVersion ?? "Error check version")
+                    Text(settingViewModel.currentVersion ?? "Error check version")
                         .font(.callout)
                         .foregroundStyle(.gray)
                 }
@@ -57,5 +51,5 @@ struct SettingView: View {
 }
 
 #Preview {
-    SettingView()
+    SettingView(settingViewModel: SettingViewModel())
 }

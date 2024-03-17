@@ -50,7 +50,6 @@ extension AppDelegate {
 @main
 struct TimerNotesApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @StateObject private var timerDataStore: TimerDataStore = TimerDataStore()
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {
@@ -58,7 +57,6 @@ struct TimerNotesApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(timerDataStore)
         }
     }
 }

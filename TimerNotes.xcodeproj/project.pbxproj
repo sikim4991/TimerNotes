@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FF3937DE2B59287000C7BB7E /* TimerDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3937DD2B59287000C7BB7E /* TimerDataStore.swift */; };
+		FF3931AD2BA4D09B002B981B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3931AC2BA4D09B002B981B /* SettingViewModel.swift */; };
+		FF3937DE2B59287000C7BB7E /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3937DD2B59287000C7BB7E /* TimerViewModel.swift */; };
 		FF4231EC2B3D6669001E1785 /* TimerNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4231EB2B3D6669001E1785 /* TimerNotesApp.swift */; };
 		FF4231EE2B3D6669001E1785 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4231ED2B3D6669001E1785 /* ContentView.swift */; };
 		FF4231F02B3D666A001E1785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF4231EF2B3D666A001E1785 /* Assets.xcassets */; };
@@ -30,6 +31,8 @@
 		FF91FDE02B5E867200F7217A /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF91FDDF2B5E867200F7217A /* ChartView.swift */; };
 		FF9B4BD62B57D3E900FCBDD9 /* TimerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B4BD52B57D3E900FCBDD9 /* TimerData.swift */; };
 		FFB3EDAC2B838DD90081A648 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF7CA6352B7226B100B2CCB6 /* Assets.xcassets */; };
+		FFC167512B9F56EB00F9885F /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC167502B9F56EB00F9885F /* ChartViewModel.swift */; };
+		FFC167532B9F570E00F9885F /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC167522B9F570E00F9885F /* ListViewModel.swift */; };
 		FFF8FCB72B44825500184AAF /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF8FCB62B44825500184AAF /* TimerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FF3937DD2B59287000C7BB7E /* TimerDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDataStore.swift; sourceTree = "<group>"; };
+		FF3931AC2BA4D09B002B981B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		FF3937DD2B59287000C7BB7E /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		FF4231E82B3D6669001E1785 /* TimerNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimerNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF4231EB2B3D6669001E1785 /* TimerNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNotesApp.swift; sourceTree = "<group>"; };
 		FF4231ED2B3D6669001E1785 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 		FF91FDDF2B5E867200F7217A /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		FF9B4BD52B57D3E900FCBDD9 /* TimerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerData.swift; sourceTree = "<group>"; };
 		FFBE81EA2B56B26F00012889 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		FFC167502B9F56EB00F9885F /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		FFC167522B9F570E00F9885F /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		FFF8FCB62B44825500184AAF /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +111,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF3931AE2BA717F7002B981B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FF4231F42B3D666A001E1785 /* PersistenceController.swift */,
+				FF4231F62B3D666A001E1785 /* TimerNotes.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		FF3931AF2BA718AA002B981B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF7CA65D2B742C8500B2CCB6 /* notificationSound.wav */,
+				FF4231EF2B3D666A001E1785 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FF3931B02BA718EA002B981B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FF4231EB2B3D6669001E1785 /* TimerNotesApp.swift */,
+				FF9B4BD42B57C55800FCBDD9 /* Model */,
+				FF9B4BD22B57C37800FCBDD9 /* View */,
+				FF9B4BD32B57C54C00FCBDD9 /* ViewModel */,
+				FF3931AE2BA717F7002B981B /* CoreData */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		FF4231DF2B3D6669001E1785 = {
 			isa = PBXGroup;
 			children = (
@@ -129,14 +165,8 @@
 			children = (
 				FF91FDDE2B5C2DB800F7217A /* Info.plist */,
 				FF91FDDD2B5C2DA300F7217A /* TimerNotes.entitlements */,
-				FF4231EB2B3D6669001E1785 /* TimerNotesApp.swift */,
-				FF9B4BD42B57C55800FCBDD9 /* Model */,
-				FF9B4BD32B57C54C00FCBDD9 /* Store */,
-				FF9B4BD22B57C37800FCBDD9 /* View */,
-				FF4231EF2B3D666A001E1785 /* Assets.xcassets */,
-				FF7CA65D2B742C8500B2CCB6 /* notificationSound.wav */,
-				FF4231F42B3D666A001E1785 /* PersistenceController.swift */,
-				FF4231F62B3D666A001E1785 /* TimerNotes.xcdatamodeld */,
+				FF3931B02BA718EA002B981B /* Sources */,
+				FF3931AF2BA718AA002B981B /* Resources */,
 				FF4231F12B3D666A001E1785 /* Preview Content */,
 			);
 			path = TimerNotes;
@@ -184,12 +214,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		FF9B4BD32B57C54C00FCBDD9 /* Store */ = {
+		FF9B4BD32B57C54C00FCBDD9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FF3937DD2B59287000C7BB7E /* TimerDataStore.swift */,
+				FF3937DD2B59287000C7BB7E /* TimerViewModel.swift */,
+				FFC167502B9F56EB00F9885F /* ChartViewModel.swift */,
+				FFC167522B9F570E00F9885F /* ListViewModel.swift */,
+				FF3931AC2BA4D09B002B981B /* SettingViewModel.swift */,
 			);
-			path = Store;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FF9B4BD42B57C55800FCBDD9 /* Model */ = {
@@ -305,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFF8FCB72B44825500184AAF /* TimerView.swift in Sources */,
+				FF3931AD2BA4D09B002B981B /* SettingViewModel.swift in Sources */,
 				FF7CA6242B72257500B2CCB6 /* SettingView.swift in Sources */,
 				FF4231F52B3D666A001E1785 /* PersistenceController.swift in Sources */,
 				FF8183882B6794E8004FE3A8 /* ListView.swift in Sources */,
@@ -313,8 +347,10 @@
 				FF4231F82B3D666A001E1785 /* TimerNotes.xcdatamodeld in Sources */,
 				FF4231EE2B3D6669001E1785 /* ContentView.swift in Sources */,
 				FF7CA63E2B72278D00B2CCB6 /* TimerNotesWidgetLiveActivity.swift in Sources */,
+				FFC167532B9F570E00F9885F /* ListViewModel.swift in Sources */,
+				FFC167512B9F56EB00F9885F /* ChartViewModel.swift in Sources */,
 				FF4231EC2B3D6669001E1785 /* TimerNotesApp.swift in Sources */,
-				FF3937DE2B59287000C7BB7E /* TimerDataStore.swift in Sources */,
+				FF3937DE2B59287000C7BB7E /* TimerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

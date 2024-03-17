@@ -10,32 +10,15 @@ import AVFoundation
 //import UserNotifications
 
 struct TimerView: View {
-    ///첫 알림 거부 시, Alert을 띄우기 위한 Boolean
-    @AppStorage("notification") private var isFirstCheckNotification: Bool = true
-    @EnvironmentObject private var timerDataStore: TimerDataStore
-    ///마지막으로 설정한 각도 = 시간
-    @State private var lastAngle: Int = 0
-    ///타이머 끝나는 날짜
-    @State private var endDate: Date = Date()
-    ///타이머 카테고리
-    @State private var selectedCategory: Category = .study
-    ///타이머 시작 유무 Boolean
-    @State private var isStart: Bool = false
-    ///타이머 기록 On/Off Boolean
-    @State private var isOnRecord: Bool = false
-    ///첫 알림 거부 Alert Boolean
-    @State private var isShowingNotifyAlert: Bool = false
-    
-    ///타이머 퍼블리셔 - 1초
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+    @StateObject private var timerViewModel: TimerViewModel = TimerViewModel()
+    @ObservedObject var listViewModel: ListViewModel
     //타이머 디스플레이 분
     private var displayMinute: String {
-        String(format: "%01d", timerDataStore.angle / 60)
+        String(format: "%01d", timerViewModel.timerData.angle / 60)
     }
     //타이머 디스플레이 초
     private var displaySecond: String {
-        String(format: "%02d", timerDataStore.angle % 60)
+        String(format: "%02d", timerViewModel.timerData.angle % 60)
     }
     
     var body: some View {
@@ -45,7 +28,7 @@ struct TimerView: View {
                 
                 //타이머 카테고리 뷰
                 ZStack {
-                    Picker(selection: $selectedCategory, label: Text("분류")) {
+                    Picker(selection: $timerViewModel.timerData.selectedCategory, label: Text("분류")) {
                         ForEach(Category.allCases, id: \.self) { option in
                             Text(option.rawValue)
                                 .tag(option)
@@ -53,7 +36,7 @@ struct TimerView: View {
                     }
                     .pickerStyle(WheelPickerStyle())
                     .frame(height: 80)
-                    .disabled(isStart)
+                    .disabled(timerViewModel.isStart)
                     
                     HStack {
                         Spacer()
@@ -98,7 +81,7 @@ struct TimerView: View {
                     TimelineView(.periodic(from: .now, by: 1.0)) { _ in
                         //고정되지 않은 뷰들 ( 빨간 원, 침, 다이얼 )
                         Circle()
-                            .trim(from: 0.0, to: CGFloat(timerDataStore.angle) * 0.1 / 360)
+                            .trim(from: 0.0, to: CGFloat(timerViewModel.timerData.angle) * 0.1 / 360)
                             .stroke(lineWidth: 140)
                             .frame(width: 140)
                             .foregroundStyle(.red)
@@ -113,13 +96,13 @@ struct TimerView: View {
                                 Rectangle()
                                     .frame(width: 1, height: 110)
                                     .padding(.bottom, 170)
-                                    .rotationEffect(.degrees(Double(timerDataStore.angle) * -0.1))
+                                    .rotationEffect(.degrees(Double(timerViewModel.timerData.angle) * -0.1))
                                 Rectangle()
                                     .frame(width: 5, height: 15)
                                     .foregroundStyle(Color.white)
                                     .padding(.bottom, 54)
                                     .shadow(radius: 3, y: -2)
-                                    .rotationEffect(.degrees(Double(timerDataStore.angle) * -0.1))
+                                    .rotationEffect(.degrees(Double(timerViewModel.timerData.angle) * -0.1))
                             }
                         //타이머 설정을 위한 drag gesture
                             .gesture(
@@ -131,40 +114,39 @@ struct TimerView: View {
                                         }
                                         
                                         theta = 360 - theta
-                                        timerDataStore.angle = Int(round(theta)) * 10 + self.lastAngle
+                                        timerViewModel.timerData.angle = Int(round(theta)) * 10 + timerViewModel.timerData.lastAngle
                                         
-                                        if timerDataStore.angle > 3600 {
-                                            timerDataStore.angle -= 3600
+                                        if timerViewModel.timerData.angle > 3600 {
+                                            timerViewModel.timerData.angle -= 3600
                                         }
                                     }
                                     .onEnded { v in
-                                        self.lastAngle = timerDataStore.angle
+                                        timerViewModel.timerData.lastAngle = timerViewModel.timerData.angle
                                     }
                             )
-                            .disabled(isStart)
+                            .disabled(timerViewModel.isStart)
                     }
                 }
                 //타이머 설정 중 효과음과 햅틱
-                .onChange(of: timerDataStore.angle) {
-                    if !isStart {
+                .onChange(of: timerViewModel.timerData.angle) {
+                    if !timerViewModel.isStart {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                         AudioServicesPlaySystemSound(1104)
                     }
                 }
                 //타이머 시작 시, 정지 및 타이머 끝났을 때
-                .onReceive(timer, perform: { _ in
-                    if isStart {
-                        if timerDataStore.angle > 0 {
-                            if Int(endDate.timeIntervalSince1970) > Int(Date().timeIntervalSince1970) {
-                                timerDataStore.angle = Int(endDate.timeIntervalSince1970) - Int(Date().timeIntervalSince1970)
+                .onReceive(timerViewModel.timer, perform: { _ in
+                    if timerViewModel.isStart {
+                        if timerViewModel.timerData.angle > 0 {
+                            if Int(timerViewModel.timerData.endDate.timeIntervalSince1970) > Int(Date().timeIntervalSince1970) {
+                                timerViewModel.timerData.angle = Int(timerViewModel.timerData.endDate.timeIntervalSince1970) - Int(Date().timeIntervalSince1970)
                             } else {
-                                isStart.toggle()
-                                timerDataStore.angle = 0
-                                timerDataStore.endTimerInLiveActivity()
-                                if isOnRecord {
-                                    PersistenceController.shared.addItem(date: endDate, category: selectedCategory.rawValue, timeSet: self.lastAngle)
-                                    timerDataStore.addDateTitle(date: endDate - TimeInterval(self.lastAngle))
-                                }
+                                timerViewModel.isStart.toggle()
+                                timerViewModel.timerData.angle = 0
+                                timerViewModel.endTimerInLiveActivity()
+                                if timerViewModel.isOnRecord {
+                                    PersistenceController.shared.addItem(date: timerViewModel.timerData.endDate, category: timerViewModel.timerData.selectedCategory.rawValue, timeSet: timerViewModel.timerData.lastAngle)
+                                    listViewModel.addDateTitle(date: timerViewModel.timerData.endDate - TimeInterval(timerViewModel.timerData.lastAngle))                                }
                             }
                         }
                     }
@@ -175,8 +157,8 @@ struct TimerView: View {
                 
                 ZStack {
                     //타이머 숫자 뷰
-                    if isStart && timerDataStore.angle > 0 {
-                        Text(timerInterval: Date.now...endDate)
+                    if timerViewModel.isStart && timerViewModel.timerData.angle > 0 {
+                        Text(timerInterval: Date.now...timerViewModel.timerData.endDate)
                                 .font(.largeTitle)
                                 .fontWeight(.light)
                     } else {
@@ -189,28 +171,28 @@ struct TimerView: View {
                         Spacer()
                             .frame(width: 150)
                         ZStack {
-                            Image(systemName: isStart ? "stop.fill" : "play.fill")
+                            Image(systemName: timerViewModel.isStart ? "stop.fill" : "play.fill")
                             Circle()
                                 .stroke(lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
                                 .frame(width: 35)
                         }
                         //버튼 눌렀을 때
                         .onTapGesture {
-                            if timerDataStore.angle != 0 {
-                                isStart.toggle()
-                                if isStart {
-                                    timerDataStore.startTimerInLiveActivity(category: selectedCategory.rawValue)
-                                    endDate = Date(timeInterval: TimeInterval(timerDataStore.angle), since: Date())
-                                    if isOnRecord {
-                                        timerDataStore.notifcation(category: selectedCategory.rawValue, timeInterval: TimeInterval(self.lastAngle))
+                            if timerViewModel.timerData.angle != 0 {
+                                timerViewModel.isStart.toggle()
+                                if timerViewModel.isStart {
+                                    timerViewModel.startTimerInLiveActivity(category: timerViewModel.timerData.selectedCategory.rawValue)
+                                    timerViewModel.timerData.endDate = Date(timeInterval: TimeInterval(timerViewModel.timerData.angle), since: Date())
+                                    if timerViewModel.isOnRecord {
+                                        timerViewModel.notifcation(category: timerViewModel.timerData.selectedCategory.rawValue, timeInterval: TimeInterval(timerViewModel.timerData.lastAngle))
                                     } else {
-                                        timerDataStore.notifcation(category: nil, timeInterval: TimeInterval(self.lastAngle))
+                                        timerViewModel.notifcation(category: nil, timeInterval: TimeInterval(timerViewModel.timerData.lastAngle))
                                     }
                                 } else {
-                                    timerDataStore.angle = 0
-                                    self.lastAngle = 0
-                                    timerDataStore.notificationCenter.removeAllPendingNotificationRequests()
-                                    timerDataStore.endTimerInLiveActivity()
+                                    timerViewModel.timerData.angle = 0
+                                    timerViewModel.timerData.lastAngle = 0
+                                    timerViewModel.notificationCenter.removeAllPendingNotificationRequests()
+                                    timerViewModel.endTimerInLiveActivity()
                                 }
                             }
                         }
@@ -224,31 +206,29 @@ struct TimerView: View {
             //기록 toggle switch
             .toolbar {
                 ToolbarItem {
-                    Toggle("기록", isOn: $isOnRecord)
+                    Toggle("기록", isOn: $timerViewModel.isOnRecord)
                         .toggleStyle(SwitchToggleStyle())
-                        .disabled(isStart)
+                        .disabled(timerViewModel.isStart)
                 }
             }
             .onAppear {
-                //디스플레이 항상 켜놓기 설정
-                UIApplication.shared.isIdleTimerDisabled = timerDataStore.isAlwaysOnDisplay
                 //알림 요청 및 허용/거부
-                timerDataStore.notificationCenter.requestAuthorization(options: [.badge, .sound, .alert]) { isAllow, error in
+                timerViewModel.notificationCenter.requestAuthorization(options: [.badge, .sound, .alert]) { isAllow, error in
                     if let error {
                         print("Error : \(error)")
                     }
                     
                     guard isAllow else {
-                        if isFirstCheckNotification {
-                            isShowingNotifyAlert.toggle()
-                            isFirstCheckNotification = false
+                        if timerViewModel.isFirstCheckNotification {
+                            timerViewModel.isShowingNotifyAlert.toggle()
+                            timerViewModel.isFirstCheckNotification = false
                         }
                         return
                     }
                 }
             }
             //알림 거부 시, 최초 1회 Alert
-            .alert("안내", isPresented: $isShowingNotifyAlert) {
+            .alert("안내", isPresented: $timerViewModel.isShowingNotifyAlert) {
                 Button("확인") { }
             } message: {
                 Text("알림이 거부되어 정삭적인 알림이 작동하지 않습니다. 설정 > TimerNotes > 알림에서 설정이 가능합니다.")
@@ -259,7 +239,6 @@ struct TimerView: View {
 
 #Preview {
     NavigationStack {
-        TimerView()
-            .environmentObject(TimerDataStore())
+        TimerView(listViewModel: ListViewModel())
     }
 }

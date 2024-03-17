@@ -11,23 +11,37 @@ import CoreData
 struct ContentView: View {
     ///Onboarding animation 순서를 위한 Int
     @AppStorage("onboarding") private var onboardingAnimationNumber: Int = 1
+    @StateObject private var listViewModel: ListViewModel = ListViewModel()
+    @StateObject private var settingViewModel: SettingViewModel = SettingViewModel()
     
     var body: some View {
         TabView {
-            TimerView()
+            TimerView(listViewModel: listViewModel)
                 .tabItem {
                     Image(systemName: "clock.fill")
                     Text("타이머")
                 }
-            ChartView()
+                .onAppear {
+                    //디스플레이 항상 켜놓기 설정
+                    UIApplication.shared.isIdleTimerDisabled = settingViewModel.isAlwaysOnDisplay
+                }
+            ChartView(listViewModel: listViewModel)
                 .tabItem {
                     Image(systemName: "chart.bar.xaxis")
                     Text("통계")
                 }
-            SettingView()
+                .onAppear {
+                    //디스플레이 항상 켜놓기 설정
+                    UIApplication.shared.isIdleTimerDisabled = settingViewModel.isAlwaysOnDisplay
+                }
+            SettingView(settingViewModel: settingViewModel)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("설정")
+                }
+                .onAppear {
+                    //디스플레이 항상 켜놓기 설정
+                    UIApplication.shared.isIdleTimerDisabled = settingViewModel.isAlwaysOnDisplay
                 }
         }
         //Onboarding

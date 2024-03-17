@@ -9,7 +9,7 @@ import CoreData
 import SwiftUI
 
 //CoreData
-struct PersistenceController {
+class PersistenceController {
     static let shared = PersistenceController()
 
     let container: NSPersistentContainer
@@ -41,19 +41,31 @@ struct PersistenceController {
     //CoreData에 추가
     func addItem(date: Date, category: String, timeSet: Int) {
         withAnimation {
-            let data = TimerCoreData(context: PersistenceController.shared.container.viewContext)
+            let data = TimerCoreData(context: container.viewContext)
             data.startDate = date - TimeInterval(timeSet)
             data.category = category
             data.timeSet = Int64(timeSet)
             
             do {
-                try PersistenceController.shared.container.viewContext.save()
+                try container.viewContext.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+        }
+    }
+    
+    func removeItem(offsets: IndexSet, timerCoreDatas: FetchedResults<TimerCoreData>) {
+        offsets.map { timerCoreDatas[$0] }.forEach(container.viewContext.delete)
+        do {
+            try container.viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
