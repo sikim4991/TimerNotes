@@ -36,6 +36,14 @@ __타이머 이용 시간을 노트처럼 기록하며 시간을 관리해보세
 
 ## 구현 영상
 
+|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 20 29 18](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/02dcb24a-091d-4d9f-9f8c-57085fb979be)|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 23 06](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/2ae70320-bf76-49a7-a79f-c50a9d8aab50)|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 24 46](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/1f6d68bc-8d9c-4eb8-a5f3-311446dd6751)|
+| :---: | :---: | :---: |
+|`타이머 설정 및 시작`|`알림 및 기록`|`통계(날짜선택)`|
+|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 29 35](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/c5f1a9ab-fc2a-447b-87e0-875138f52747)|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 32 51](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/6541561d-3aef-4606-8331-695616bf9f81)|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 35 08](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/1f187504-a245-4691-bb81-02f1722f1d23)|
+|`통계(카테고리선택)`|`통계(기간범위선택)`|`모든 데이터 보기 및 삭제`|
+|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 48 55](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/32dcecc0-50f1-4974-a03f-672daf48b03d)|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 41 43](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/01229be5-4e08-4eb5-99bd-75cf8ee52f43)|![Simulator Screen Recording - iPhone 15 Pro - 2024-03-19 at 22 42 00](https://github.com/APP-iOS2/final-billbuddy/assets/73647861/4a9454a6-48d0-45e2-868f-7dbce58bb078)|
+|`모든 데이터 삭제`|`Live Activity`|`Dynamic Island`|
+
 <br>
 
 ## 아키텍처
