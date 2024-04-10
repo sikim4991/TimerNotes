@@ -145,7 +145,7 @@ struct TimerView: View {
                                 timerViewModel.timerData.angle = 0
                                 timerViewModel.endTimerInLiveActivity()
                                 if timerViewModel.isOnRecord {
-                                    PersistenceController.shared.addItem(date: timerViewModel.timerData.endDate, category: timerViewModel.timerData.selectedCategory.rawValue, timeSet: timerViewModel.timerData.lastAngle)
+                                    PersistenceController.shared.addItem(date: timerViewModel.timerData.endDate, category: timerViewModel.timerData.selectedCategory.rawValue.key, timeSet: timerViewModel.timerData.lastAngle)
                                     listViewModel.addDateTitle(date: timerViewModel.timerData.endDate - TimeInterval(timerViewModel.timerData.lastAngle))                                }
                             }
                         }
@@ -181,10 +181,10 @@ struct TimerView: View {
                             if timerViewModel.timerData.angle != 0 {
                                 timerViewModel.isStart.toggle()
                                 if timerViewModel.isStart {
-                                    timerViewModel.startTimerInLiveActivity(category: timerViewModel.timerData.selectedCategory.rawValue)
+                                    timerViewModel.startTimerInLiveActivity(category: timerViewModel.timerData.selectedCategory.rawValue.key)
                                     timerViewModel.timerData.endDate = Date(timeInterval: TimeInterval(timerViewModel.timerData.angle), since: Date())
                                     if timerViewModel.isOnRecord {
-                                        timerViewModel.notifcation(category: timerViewModel.timerData.selectedCategory.rawValue, timeInterval: TimeInterval(timerViewModel.timerData.lastAngle))
+                                        timerViewModel.notifcation(category: timerViewModel.timerData.selectedCategory.rawValue.key, timeInterval: TimeInterval(timerViewModel.timerData.lastAngle))
                                     } else {
                                         timerViewModel.notifcation(category: nil, timeInterval: TimeInterval(timerViewModel.timerData.lastAngle))
                                     }
@@ -231,7 +231,7 @@ struct TimerView: View {
             .alert("안내", isPresented: $timerViewModel.isShowingNotifyAlert) {
                 Button("확인") { }
             } message: {
-                Text("알림이 거부되어 정삭적인 알림이 작동하지 않습니다. 설정 > TimerNotes > 알림에서 설정이 가능합니다.")
+                Text("알림이 거부되어 정삭적인 알림이 작동하지 않습니다. 설정 > 타이머 노트 > 알림에서 설정이 가능합니다.")
             }
         }
     }

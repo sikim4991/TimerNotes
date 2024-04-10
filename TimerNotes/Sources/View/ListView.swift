@@ -22,7 +22,8 @@ struct ListView: View {
                     ForEach(timerCoreDatas) { data in
                         if date == Calendar.current.startOfDay(for: data.startDate!) {
                             HStack {
-                                Text("\(data.timeSet / 60)분 \(data.timeSet % 60)초 \(data.category ?? "")")
+                                Text("\(data.timeSet / 60)분 \(data.timeSet % 60)초")
+                                Text(LocalizedStringKey(data.category!))
                                 Spacer()
                                 Text(data.startDate!, formatter: dateFormatter)
                                     .font(.caption)
@@ -56,17 +57,17 @@ struct ListView: View {
 
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.timeZone  = TimeZone(abbreviation: "KST")
-    formatter.locale = Locale(identifier: "ko_KR")
-    formatter.dateFormat = "YYYY년 MM월 dd일 HH:mm"
+    formatter.timeZone  = TimeZone.autoupdatingCurrent
+    formatter.locale = Locale.autoupdatingCurrent
+    formatter.dateFormat = "YYYY-MM-dd HH:mm"
     return formatter
 }()
 
 private let dateTitleFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.timeZone  = TimeZone(abbreviation: "KST")
-    formatter.locale = Locale(identifier: "ko_KR")
-    formatter.dateFormat = "YYYY년 MM월 dd일"
+    formatter.timeZone  = TimeZone.autoupdatingCurrent
+    formatter.locale = Locale.autoupdatingCurrent
+    formatter.dateFormat = "YYYY-MM-dd"
     return formatter
 }()
 

@@ -16,10 +16,8 @@ struct SettingView: View {
     var body: some View {
         List {
             Section(header: Text("설정"), footer:
-                        HStack {
-                Spacer()
                 Text("소리/진동은 측면 버튼으로 조절")
-            }) {
+                ) {
                 Toggle("디스플레이 항상 켜놓기", isOn: $settingViewModel.isAlwaysOnDisplay)
                 Button("설정 바로가기") {
                     settingViewModel.openSetting()
