@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 ///타이머 활동 카테고리
-enum Category: String, Equatable, CaseIterable {
+enum Category: LocalizedStringResource, Equatable, CaseIterable {
     case study = "공부"
     case exercise = "운동"
     case reading = "독서"

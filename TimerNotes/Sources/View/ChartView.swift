@@ -85,17 +85,17 @@ struct ChartView: View {
                     case 1:
                         BarMark(
                             x: .value("카테고리", $0.category!),
-                            y: .value("타이머기록", $0.timeSet)
+                            y: .value("타이머 기록", $0.timeSet)
                         )
                     default:
                         BarMark(
                             x: .value("날짜", $0.startDate!, unit: .day),
-                            y: .value("타이머기록",  $0.timeSet)
+                            y: .value("타이머 기록",  $0.timeSet)
                         )
                     }
                 }
-                .chartXAxisLabel(chartViewModel.selectedChart == 1 ? "분류" : "날짜")
-                .chartYAxisLabel("타이머기록")
+                .chartXAxisLabel(chartViewModel.selectedChart == 1 ? String(localized: "분류") : String(localized: "날짜"))
+                .chartYAxisLabel(String(localized: "타이머 기록"))
                 .chartYScale(domain: [0, 64800])
                 .chartXAxis {
                     AxisMarks { value in
@@ -121,7 +121,24 @@ struct ChartView: View {
                         if let category = value.as(String.self) {
                             AxisValueLabel {
                                 VStack {
-                                    Text(category)
+                                    switch category {
+                                    case "공부":
+                                        Image(systemName: "pencil.line")
+                                    case "운동":
+                                        Image(systemName: "dumbbell.fill")
+                                    case "독서":
+                                        Image(systemName: "book.fill")
+                                    case "회의":
+                                        Image(systemName: "person.3.fill")
+                                    case "게임":
+                                        Image(systemName: "gamecontroller.fill")
+                                    case "휴식":
+                                        Image(systemName: "figure.mind.and.body")
+                                    case "기타":
+                                        Image(systemName: "ellipsis.circle")
+                                    default:
+                                        Text("")
+                                    }
                                 }
                             }
                             
@@ -169,7 +186,7 @@ struct ChartView: View {
                                     .foregroundStyle(Color.gray)
                             }
                         default:
-                            if timerCoreDatas.filter({ (Calendar.current.startOfDay(for: $0.startDate!) == chartViewModel.selectedDate) && ($0.category! == chartViewModel.selectedCategory.rawValue) }).isEmpty {
+                            if timerCoreDatas.filter({ (Calendar.current.startOfDay(for: $0.startDate!) == chartViewModel.selectedDate) && ($0.category! == chartViewModel.selectedCategory.rawValue.key) }).isEmpty {
                                 Text("데이터가 없습니다.")
                                     .foregroundStyle(Color.gray)
                             }
@@ -182,7 +199,7 @@ struct ChartView: View {
                                     .foregroundStyle(Color.gray)
                             }
                         default:
-                            if timerCoreDatas.filter({ ((Calendar.current.startOfDay(for: $0.startDate!) <= chartViewModel.selectedDate) && (Calendar.current.startOfDay(for: $0.startDate!) >= Calendar.current.date(byAdding: .day, value: -7, to: chartViewModel.selectedDate)!)) && ($0.category! == chartViewModel.selectedCategory.rawValue) }).isEmpty {
+                            if timerCoreDatas.filter({ ((Calendar.current.startOfDay(for: $0.startDate!) <= chartViewModel.selectedDate) && (Calendar.current.startOfDay(for: $0.startDate!) >= Calendar.current.date(byAdding: .day, value: -7, to: chartViewModel.selectedDate)!)) && ($0.category! == chartViewModel.selectedCategory.rawValue.key) }).isEmpty {
                                 Text("데이터가 없습니다.")
                                     .foregroundStyle(Color.gray)
                             }
@@ -195,7 +212,7 @@ struct ChartView: View {
                                     .foregroundStyle(Color.gray)
                             }
                         default:
-                            if timerCoreDatas.filter({ ((Calendar.current.startOfDay(for: $0.startDate!) <= chartViewModel.selectedDate) && (Calendar.current.startOfDay(for: $0.startDate!) >= Calendar.current.date(byAdding: .day, value: -30, to: chartViewModel.selectedDate)!)) && ($0.category! == chartViewModel.selectedCategory.rawValue) }).isEmpty {
+                            if timerCoreDatas.filter({ ((Calendar.current.startOfDay(for: $0.startDate!) <= chartViewModel.selectedDate) && (Calendar.current.startOfDay(for: $0.startDate!) >= Calendar.current.date(byAdding: .day, value: -30, to: chartViewModel.selectedDate)!)) && ($0.category! == chartViewModel.selectedCategory.rawValue.key) }).isEmpty {
                                 Text("데이터가 없습니다.")
                                     .foregroundStyle(Color.gray)
                             }
@@ -211,8 +228,32 @@ struct ChartView: View {
                 //카테고리 Picker 뷰
                 Picker(selection: $chartViewModel.selectedCategory, label: Text("CategoryForChart")) {
                     ForEach(CategoryForChart.allCases, id: \.self) { category in
-                        Text(category.rawValue)
-                            .tag(category)
+                        switch category.rawValue {
+                        case "공부":
+                            Image(systemName: "pencil.line")
+                                .tag(category)
+                        case "운동":
+                            Image(systemName: "dumbbell.fill")
+                                .tag(category)
+                        case "독서":
+                            Image(systemName: "book.fill")
+                                .tag(category)
+                        case "회의":
+                            Image(systemName: "person.3.fill")
+                                .tag(category)
+                        case "게임":
+                            Image(systemName: "gamecontroller.fill")
+                                .tag(category)
+                        case "휴식":
+                            Image(systemName: "figure.mind.and.body")
+                                .tag(category)
+                        case "기타":
+                            Image(systemName: "ellipsis.circle")
+                                .tag(category)
+                        default:
+                            Text(category.rawValue)
+                                .tag(category)
+                        }
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
@@ -276,35 +317,27 @@ struct ChartView: View {
     }
 }
 
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.timeZone  = TimeZone(abbreviation: "KST")
-    formatter.locale = Locale(identifier: "ko_KR")
-    formatter.dateFormat = "YYYY년 M월 dd일 HH:mm"
-    return formatter
-}()
-
 private let dateTitleFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.timeZone  = TimeZone(abbreviation: "KST")
-    formatter.locale = Locale(identifier: "ko_KR")
-    formatter.dateFormat = "YYYY년 MM월 dd일"
+    formatter.timeZone  = TimeZone.autoupdatingCurrent
+    formatter.locale = Locale.autoupdatingCurrent
+    formatter.dateFormat = "YYYY-MM-dd"
     return formatter
 }()
 
 private let monthFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.timeZone  = TimeZone(abbreviation: "KST")
-    formatter.locale = Locale(identifier: "ko_KR")
-    formatter.dateFormat = "M월"
+    formatter.timeZone  = TimeZone.autoupdatingCurrent
+    formatter.locale = Locale.autoupdatingCurrent
+    formatter.dateFormat = "MMM"
     return formatter
 }()
 
 private let dayFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.timeZone  = TimeZone(abbreviation: "KST")
-    formatter.locale = Locale(identifier: "ko_KR")
-    formatter.dateFormat = "d일"
+    formatter.timeZone  = TimeZone.autoupdatingCurrent
+    formatter.locale = Locale.autoupdatingCurrent
+    formatter.dateFormat = "d"
     return formatter
 }()
 

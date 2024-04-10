@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 ///통계에서 확인되는 카테고리
-enum CategoryForChart: String, Equatable, CaseIterable {
+enum CategoryForChart: LocalizedStringResource, Equatable, CaseIterable {
     case all = "전체"
     case study = "공부"
     case exercise = "운동"
@@ -41,21 +41,21 @@ final class ChartViewModel: ObservableObject {
             case .all:
                 Calendar.current.startOfDay(for: element.startDate!) == selectedDate
             default:
-                (Calendar.current.startOfDay(for: element.startDate!) == selectedDate) && (element.category! == selectedCategory.rawValue)
+                (Calendar.current.startOfDay(for: element.startDate!) == selectedDate) && (element.category! == selectedCategory.rawValue.key)
             }
         case 2:
             switch (selectedCategory) {
             case .all:
                 (Calendar.current.startOfDay(for: element.startDate!) <= selectedDate) && (Calendar.current.startOfDay(for: element.startDate!) >= Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!)
             default:
-                ((Calendar.current.startOfDay(for: element.startDate!) <= selectedDate) && (Calendar.current.startOfDay(for: element.startDate!) >= Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!)) && (element.category! == selectedCategory.rawValue)
+                ((Calendar.current.startOfDay(for: element.startDate!) <= selectedDate) && (Calendar.current.startOfDay(for: element.startDate!) >= Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!)) && (element.category! == selectedCategory.rawValue.key)
             }
         case 3:
             switch (selectedCategory) {
             case .all:
                 (Calendar.current.startOfDay(for: element.startDate!) <= selectedDate) && (Calendar.current.startOfDay(for: element.startDate!) >= Calendar.current.date(byAdding: .day, value: -30, to: selectedDate)!)
             default:
-                ((Calendar.current.startOfDay(for: element.startDate!) <= selectedDate) && (Calendar.current.startOfDay(for: element.startDate!) >= Calendar.current.date(byAdding: .day, value: -30, to: selectedDate)!)) && (element.category! == selectedCategory.rawValue)
+                ((Calendar.current.startOfDay(for: element.startDate!) <= selectedDate) && (Calendar.current.startOfDay(for: element.startDate!) >= Calendar.current.date(byAdding: .day, value: -30, to: selectedDate)!)) && (element.category! == selectedCategory.rawValue.key)
             }
         default:
             Calendar.current.startOfDay(for: element.startDate!) == Calendar.current.startOfDay(for: selectedDate)
@@ -92,16 +92,16 @@ final class ChartViewModel: ObservableObject {
                 if sum == 0 {
                     return "-"
                 } else {
-                    return "\(sum / 3600)시간 \((sum % 3600) / 60)분 \((sum % 3600) % 60)초"
+                    return String(localized: "\(sum / 3600)시간 \((sum % 3600) / 60)분 \((sum % 3600) % 60)초")
                 }
             default:
-                for data in datas.filter({ $0.category! == category.rawValue }) {
+                for data in datas.filter({ $0.category! == category.rawValue.key }) {
                     sum += data.timeSet
                 }
                 if sum == 0 {
                     return "-"
                 } else {
-                    return "\(sum / 3600)시간 \((sum % 3600) / 60)분 \((sum % 3600) % 60)초"
+                    return String(localized: "\(sum / 3600)시간 \((sum % 3600) / 60)분 \((sum % 3600) % 60)초")
                 }
             }
         default:
@@ -119,10 +119,10 @@ final class ChartViewModel: ObservableObject {
                 if result == 0 {
                     return "-"
                 } else {
-                    return "기록된 일수 \(count)일 : 약 \(Int(result) / 3600)시간 \((Int(result) % 3600) / 60)분 \((Int(result) % 3600) % 60)초/일"
+                    return String(localized: "기록된 일수 \(count)일 : 약 \(Int(result) / 3600)시간 \((Int(result) % 3600) / 60)분 \((Int(result) % 3600) % 60)초/일")
                 }
             default:
-                for data in datas.filter({ $0.category! == category.rawValue }) {
+                for data in datas.filter({ $0.category! == category.rawValue.key }) {
                     sum += data.timeSet
                     if tempDate != Calendar.current.startOfDay(for: data.startDate!) {
                         count += 1
@@ -134,7 +134,7 @@ final class ChartViewModel: ObservableObject {
                 if result == 0 {
                     return "-"
                 } else {
-                    return "기록된 일수 \(count)일 : 약 \(Int(result) / 3600)시간 \((Int(result) % 3600) / 60)분 \((Int(result) % 3600) % 60)초/일"
+                    return String(localized: "기록된 일수 \(count)일 : 약 \(Int(result) / 3600)시간 \((Int(result) % 3600) / 60)분 \((Int(result) % 3600) % 60)초/일")
                 }
             }
         }

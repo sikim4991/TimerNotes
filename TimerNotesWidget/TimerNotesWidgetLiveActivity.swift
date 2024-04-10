@@ -40,7 +40,7 @@ struct TimerNotesWidgetLiveActivity: Widget {
                     Image(systemName: "gamecontroller.fill")
                         .font(.largeTitle)
                 case "휴식":
-                    Image(systemName: "hourglass.tophalf.fill")
+                    Image(systemName: "figure.mind.and.body")
                         .font(.largeTitle)
                 case "기타":
                     Image(systemName: "ellipsis.circle")
@@ -60,9 +60,15 @@ struct TimerNotesWidgetLiveActivity: Widget {
                             .font(.title3)
                             .fontWeight(.bold)
                     default:
-                        Text("\(context.attributes.categoryInWidget)중")
-                            .font(.title3)
-                            .fontWeight(.bold)
+                        HStack {
+                            Text(LocalizedStringKey(context.attributes.categoryInWidget))
+                                .font(.title3)
+                                .fontWeight(.bold)
+                            Text("중")
+                                .padding(.leading, -8)
+                                .font(.title3)
+                                .fontWeight(.bold)
+                        }
                     }
                     
                 }
@@ -97,7 +103,7 @@ struct TimerNotesWidgetLiveActivity: Widget {
                         case "게임":
                             Image(systemName: "gamecontroller.fill")
                         case "휴식":
-                            Image(systemName: "hourglass.tophalf.fill")
+                            Image(systemName: "figure.mind.and.body")
                         case "기타":
                             Image(systemName: "ellipsis.circle")
                         default:
@@ -125,7 +131,9 @@ struct TimerNotesWidgetLiveActivity: Widget {
                         case "기타":
                             Text("\(context.attributes.categoryInWidget) 할일중")
                         default:
-                            Text("\(context.attributes.categoryInWidget)중")
+                            Text(LocalizedStringKey(context.attributes.categoryInWidget))
+                            Text("중")
+                                .padding(.leading, -8)
                         }
                     }
                     .font(.footnote)
@@ -151,7 +159,7 @@ struct TimerNotesWidgetLiveActivity: Widget {
                     case "게임":
                         Image(systemName: "gamecontroller.fill")
                     case "휴식":
-                        Image(systemName: "hourglass.tophalf.fill")
+                        Image(systemName: "figure.mind.and.body")
                     case "기타":
                         Image(systemName: "ellipsis.circle")
                     default:
